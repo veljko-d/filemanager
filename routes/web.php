@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/folders');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('files', 'FileController')->only([
+    'create', 'store', 'delete'
+]);
+
+Route::resource('folders', 'FolderController');
