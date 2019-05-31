@@ -16,7 +16,7 @@ Route::redirect('/', '/folders');
 Auth::routes();
 
 Route::resource('files', 'FileController')->only([
-    'create', 'store', 'delete'
+    'store', 'destroy'
 ]);
 
 Route::resource('folders', 'FolderController');

@@ -35,7 +35,7 @@ class Folder extends Model
      */
     public function files()
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class, 'folder_id', 'id');
     }
 
     /**
@@ -43,7 +43,7 @@ class Folder extends Model
      */
     public function parent()
     {
-        return $this->hasOne(Folder::class);
+        return $this->hasOne(Folder::class, 'id', 'parent_id');
     }
 
     /**
@@ -51,6 +51,6 @@ class Folder extends Model
      */
     public function children()
     {
-        return $this->hasMany(Folder::class);
+        return $this->hasMany(Folder::class, 'parent_id', 'id');
     }
 }
