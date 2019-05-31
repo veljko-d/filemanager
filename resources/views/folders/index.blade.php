@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="">
-        <h1 class="text-center text-primary">BROWSE FOLDERS</h1>
+    <div id="posts">
+        <h1>BROWSE FOLDERS</h1>
 
         @foreach ($folders as $folder)
 
