@@ -16,10 +16,7 @@ class FilePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can create files.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
+     * @param User $user
      */
     public function create(User $user)
     {
@@ -27,11 +24,10 @@ class FilePolicy
     }
 
     /**
-     * Determine whether the user can update the file.
+     * @param User $user
+     * @param File $file
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\File  $file
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, File $file)
     {
@@ -39,11 +35,10 @@ class FilePolicy
     }
 
     /**
-     * Determine whether the user can delete the file.
+     * @param User $user
+     * @param File $file
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\File  $file
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, File $file)
     {
@@ -51,11 +46,10 @@ class FilePolicy
     }
 
     /**
-     * Determine whether the user can restore the file.
+     * @param User $user
+     * @param File $file
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\File  $file
-     * @return mixed
+     * @return bool
      */
     public function restore(User $user, File $file)
     {
@@ -63,11 +57,10 @@ class FilePolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the file.
+     * @param User $user
+     * @param File $file
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\File  $file
-     * @return mixed
+     * @return bool
      */
     public function forceDelete(User $user, File $file)
     {

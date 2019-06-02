@@ -16,10 +16,7 @@ class FolderPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can create folders.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
+     * @param User $user
      */
     public function create(User $user)
     {
@@ -27,11 +24,10 @@ class FolderPolicy
     }
 
     /**
-     * Determine whether the user can update the folder.
+     * @param User   $user
+     * @param Folder $folder
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Folder  $folder
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, Folder $folder)
     {
@@ -39,11 +35,10 @@ class FolderPolicy
     }
 
     /**
-     * Determine whether the user can delete the folder.
+     * @param User   $user
+     * @param Folder $folder
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Folder  $folder
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, Folder $folder)
     {
@@ -51,11 +46,10 @@ class FolderPolicy
     }
 
     /**
-     * Determine whether the user can restore the folder.
+     * @param User   $user
+     * @param Folder $folder
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Folder  $folder
-     * @return mixed
+     * @return bool
      */
     public function restore(User $user, Folder $folder)
     {
@@ -63,11 +57,10 @@ class FolderPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the folder.
+     * @param User   $user
+     * @param Folder $folder
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Folder  $folder
-     * @return mixed
+     * @return bool
      */
     public function forceDelete(User $user, Folder $folder)
     {
