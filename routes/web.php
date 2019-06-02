@@ -11,12 +11,14 @@
 |
 */
 
-Route::redirect('/', '/folders');
+Route::redirect('/', '/folders')->name('home');;
 
 Auth::routes();
 
 Route::resource('files', 'FileController')->only([
-    'store', 'destroy'
+    'store', 'show', 'destroy'
 ]);
 
-Route::resource('folders', 'FolderController');
+Route::resource('folders', 'FolderController')->except([
+    'create'
+]);

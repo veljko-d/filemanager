@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Folder\CreateFolderRequest;
+use App\Http\Requests\Folder\UpdateFolderRequest;
 use App\Models\Folder;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -15,19 +17,26 @@ class FolderController extends Controller
 {
     public function index()
     {
-        $folders = Folder::all();
+        $folders = Folder::with(['files'])->paginate(10);
 
         return view('folders.index', compact('folders'));
     }
 
-    public function create()
+    public function store(CreateFolderRequest $request)
     {
-        //
-    }
+        $validation = $request->validated();
 
-    public function store(Request $request)
-    {
-        Storage::makeDirectory();
+        Storage::makeDirectory($validation['folder_name']);
+
+        $data = [
+            'name'      => $validation['folder_name'],
+            'user_id'   => Auth::id(),
+            'parent_id' => $validation['parent_id'],
+        ];
+
+        $folder = Folder::create($data);
+
+        return redirect()->home();
     }
 
     public function show($id)
@@ -40,13 +49,19 @@ class FolderController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateFolderRequest $request, $id)
     {
         //
     }
 
     public function destroy($id)
     {
-        Storage::deleteDirectory();
+        $folder = Folder::findOrFail($id);
+
+        Storage::deleteDirectory($folder->name);
+
+        Folder::destroy($id);
+
+        return redirect()->home();
     }
 }

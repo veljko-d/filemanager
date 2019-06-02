@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\File\CreateFileRequest;
 use App\Models\File;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class FileController
@@ -12,21 +14,36 @@ use Illuminate\Http\Request;
  */
 class FileController extends Controller
 {
-    public function store(Request $request)
+    public function store(CreateFileRequest $request)
     {
-        $validation = $request->validate([
-            'file'      => 'required|file|max:8192',
-            'folder_id' => 'required|exists:folder,id',
-        ]);
+        $validation = $request->validated();
 
-        $file      = $validation['photo'];
-        $extension = $file->getClientOriginalExtension();
+        $path = Storage::putFile('Prvi', $validation['file_to_upload']);
 
-        $path      = $file->storeAs('photos', $filename);
+        /*$data = [
+            'name'    => $getFile->getClientOriginalName(),
+            'ext'     => $getFile->getClientOriginalExtension(),
+            'size'    => $getFile->getSize(),
+            'user_id' => Auth::id()
+        ];*/
+
+        return redirect()->home();
     }
+
+    public function show($id)
+    {
+        // ...
+
+        return Storage::download('file.jpg');
+    }
+
 
     public function destroy($id)
     {
-        //
+        $file = File::findOrFail($id);
+
+        Storage::delete($file->name);
+
+        File::destroy($id);
     }
 }
