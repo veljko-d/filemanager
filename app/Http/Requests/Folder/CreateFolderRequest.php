@@ -31,7 +31,7 @@ class CreateFolderRequest extends FormRequest
     {
         return [
             'folder_name' => 'required|min:1|max:50',
-            //'parent_id'   => 'exists:folders,id',
+            'parent_id'   => 'nullable|exists:folders,id',
         ];
     }
 }

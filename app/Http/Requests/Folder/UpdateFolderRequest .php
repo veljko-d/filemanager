@@ -32,7 +32,7 @@ class UpdateFolderRequest extends FormRequest
         return [
             'id'          => 'required|exists:folders,id',
             'folder_name' => 'required|min:1|max:50',
-            //'parent_id'   => 'exists:folders,id',
+            'parent_id'   => 'nullable|exists:folders,id',
         ];
     }
 }
