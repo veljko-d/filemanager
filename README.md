@@ -5,7 +5,7 @@ A simple Laravel file manager
 INSTALLATION
 ---------------------------------------------------------------------------------
 
-After cloning project, create the "filemanager" table and run the following commands:
+Clone project, create the "filemanager" schema and run the following commands:
 
 composer update
 
