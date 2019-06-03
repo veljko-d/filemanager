@@ -10,14 +10,18 @@
         <h1>BROWSE FOLDERS</h1>
 
         <hr>
-        @if (Auth::user())
+        @auth
             @include ('folders.create')
-        @endif
-        <hr>
-        @if (Auth::user())
+
+            <hr>
+        @endauth
+
+        @auth
             @include ('files.create')
-        @endif
-        <hr>
+
+            <hr>
+        @endauth
+
         @include ('layouts.errors')
 
         @foreach ($folders as $folder)

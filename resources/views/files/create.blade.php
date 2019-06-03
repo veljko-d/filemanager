@@ -5,6 +5,7 @@
         @csrf
 
         <input type="file" name="file_to_upload" multiple>
+        <input type="text" name="folder_id" size="2" @isset($folder) value="{{ $folder->id }}" @endisset readonly>
         <input type="submit" value="Upload File" name="submit">
     </form>
 </div>
