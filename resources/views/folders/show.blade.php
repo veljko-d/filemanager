@@ -9,6 +9,8 @@
     <div id="folders">
         <h1>BROWSE FOLDERS</h1>
 
+        <h2><i class='fas fa-folder'></i> {{ $folder->name }}</h2>
+
         <hr>
         @if (Auth::user())
             @include ('folders.create')
@@ -20,7 +22,7 @@
         <hr>
         @include ('layouts.errors')
 
-        @foreach ($folders as $folder)
+        @foreach ($folder->children as $folder)
 
             @include ('folders.folder')
 

@@ -1,9 +1,25 @@
-#posts h1 {
+h1 {
     padding: 0.4em;
     margin: 1em 10em;
     border: 2px solid rgba(66, 139, 202, 0.8);
     color: rgba(66, 139, 202, 0.8);
     text-align: center;
+}
+
+h2 {
+    color: rgba(66, 139, 202, 0.8);
+    text-align: center;
+    padding: 0.4em;
+}
+
+#folder-create form {
+    margin: 1% 0 1% 42%;
+    display: none;
+}
+
+#folder-create p {
+    text-align: center;
+    cursor: pointer;
 }
 
 .folder {

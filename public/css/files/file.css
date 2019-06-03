@@ -1,0 +1,9 @@
+#file-create form {
+    margin: 1% 0 1% 39%;
+    display: none;
+}
+
+#file-create p {
+    text-align: center;
+    cursor: pointer;
+}

@@ -1,4 +1,6 @@
-<div id="">
+<div id="file-create">
+    <p>Upload File</p>
+
     <form action="/files" method="POST" enctype="multipart/form-data">
         @csrf
 

@@ -1,6 +1,6 @@
 <div class="folder">
     <div id="f-name">
-        <p><i class='fas fa-folder'></i> {{ $folder->name }}</p>
+        <p><a href="/folders/{{ $folder->id }}"><i class='fas fa-folder'></i> {{ $folder->name }}</a></p>
     </div>
 
     @can('delete', $folder)
