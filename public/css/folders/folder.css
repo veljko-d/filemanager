@@ -59,6 +59,10 @@ h2 {
     cursor: pointer;
 }
 
+#show:hover {
+    text-decoration: underline;
+}
+
 #id01 p {
     text-align: center;
     font-weight: bold;
@@ -129,7 +133,7 @@ form button:last-child {
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid rgba(248,250,252);
     border-radius: 0.3em;
-    width: 15%; /* Could be more or less, depending on screen size */
+    width: 17em; /* Could be more or less, depending on screen size */
 }
 
 /* Add Zoom Animation */
