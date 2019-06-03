@@ -17,7 +17,7 @@ class FolderController extends Controller
 {
     public function index()
     {
-        $folders = Folder::with(['files'])->paginate(10);
+        $folders = Folder::with(['files'])->noParent()->paginate(50);
 
         return view('folders.index', compact('folders'));
     }
@@ -26,7 +26,14 @@ class FolderController extends Controller
     {
         $validation = $request->validated();
 
-        Storage::makeDirectory($validation['folder_name']);
+        if ($validation['parent_id']) {
+            $parent = Folder::findOrFail($validation['parent_id']);
+            $path = $parent->name . '/'. $validation['folder_name'];
+
+            Storage::makeDirectory($path);
+        } else {
+            Storage::makeDirectory($validation['folder_name']);
+        }
 
         $data = [
             'name'      => $validation['folder_name'],
@@ -34,14 +41,17 @@ class FolderController extends Controller
             'parent_id' => $validation['parent_id'],
         ];
 
-        $folder = Folder::create($data);
+        Folder::create($data);
 
-        return redirect()->home();
+        return redirect()->back();
     }
 
     public function show($id)
     {
-        //
+        $folder = Folder::findOrFail($id);
+        //dd($folder->parent);
+
+        return view('folders.show', compact('folder'));
     }
 
     public function edit($id)
@@ -62,6 +72,6 @@ class FolderController extends Controller
 
         Folder::destroy($id);
 
-        return redirect()->home();
+        return redirect()->back();
     }
 }
