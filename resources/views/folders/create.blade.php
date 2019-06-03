@@ -5,7 +5,7 @@
         @csrf
 
         <input type="text" name="folder_name" size="10">
-        <input type="text" name="parent_id" size="2" @isset($folder) value="{{ $folder->id }}" @endisset readonly>
+        <input type="hidden" name="parent_id" size="2" @isset($folder) value="{{ $folder->id }}" @endisset readonly>
         <input type="submit" value="New Folder" />
     </form>
 </div>

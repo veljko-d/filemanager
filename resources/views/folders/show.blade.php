@@ -12,14 +12,18 @@
         <h2><i class='fas fa-folder'></i> {{ $folder->name }}</h2>
 
         <hr>
-        @if (Auth::user())
+        @auth
             @include ('folders.create')
-        @endif
-        <hr>
-        @if (Auth::user())
+
+            <hr>
+        @endauth
+
+        @auth
             @include ('files.create')
-        @endif
-        <hr>
+
+            <hr>
+        @endauth
+
         @include ('layouts.errors')
 
         @foreach ($folder->children as $folder)
