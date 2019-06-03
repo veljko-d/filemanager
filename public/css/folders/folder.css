@@ -1,9 +1,14 @@
 h1 {
     padding: 0.4em;
     margin: 1em 10em;
-    border: 2px solid rgba(66, 139, 202, 0.8);
+    border: 2px solid rgba(66, 139, 202, 0.2);
     color: rgba(66, 139, 202, 0.8);
     text-align: center;
+    transition: 0.7s;
+}
+
+h1:hover {
+    border: 2px solid rgba(66, 139, 202, 1);
 }
 
 h2 {

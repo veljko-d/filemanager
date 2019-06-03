@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Folder\CreateFolderRequest;
 use App\Http\Requests\Folder\UpdateFolderRequest;
-use App\Models\Folder;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use App\Services\FolderService;
 
 /**
  * Class FolderController
@@ -15,41 +13,58 @@ use Illuminate\Support\Facades\Storage;
  */
 class FolderController extends Controller
 {
+    /**
+     * @var FolderService
+     */
+    private $folderService;
+
+    /**
+     * FolderController constructor.
+     *
+     * @param FolderService $folderService
+     */
+    public function __construct(FolderService $folderService)
+    {
+        $this->folderService = $folderService;
+
+        $this->middleware('auth')->only([
+            'store',
+            'edit',
+            'update',
+            'destroy'
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $folders = Folder::with(['files'])->noParent()->paginate(50);
+        $folders = $this->folderService->all();
 
         return view('folders.index', compact('folders'));
     }
 
+    /**
+     * @param CreateFolderRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateFolderRequest $request)
     {
-        $validation = $request->validated();
-
-        if ($validation['parent_id']) {
-            $parent = Folder::findOrFail($validation['parent_id']);
-            $path = $parent->name . '/'. $validation['folder_name'];
-
-            Storage::makeDirectory($path);
-        } else {
-            Storage::makeDirectory($validation['folder_name']);
-        }
-
-        $data = [
-            'name'      => $validation['folder_name'],
-            'user_id'   => Auth::id(),
-            'parent_id' => $validation['parent_id'],
-        ];
-
-        Folder::create($data);
+        $this->folderService->create($request->validated());
 
         return redirect()->back();
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
-        $folder = Folder::findOrFail($id);
-        //dd($folder->parent);
+        $folder = $this->folderService->find($id);
 
         return view('folders.show', compact('folder'));
     }
@@ -64,18 +79,14 @@ class FolderController extends Controller
         //
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
-        $folder = Folder::findOrFail($id);
-
-        if ($folder->parent) {
-            $path = $folder->parent->name . '/' . $folder->name;
-            Storage::deleteDirectory($path);
-        } else {
-            Storage::deleteDirectory($folder->name);
-        }
-
-        Folder::destroy($id);
+        $this->folderService->delete($id);
 
         return redirect()->back();
     }
