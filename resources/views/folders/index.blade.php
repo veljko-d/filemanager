@@ -9,9 +9,13 @@
         <h1>BROWSE FOLDERS</h1>
 
         <hr>
-        @include ('folders.create')
+        @if (Auth::user())
+            @include ('folders.create')
+        @endif
         <hr>
-        @include ('files.create')
+        @if (Auth::user())
+            @include ('files.create')
+        @endif
         <hr>
         @include ('layouts.errors')
 
