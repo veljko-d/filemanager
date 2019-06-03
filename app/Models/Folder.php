@@ -39,11 +39,11 @@ class Folder extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function parent()
     {
-        return $this->hasOne(Folder::class, 'id', 'parent_id');
+        return $this->belongsTo(Folder::class, 'parent_id');
     }
 
     /**
@@ -51,6 +51,16 @@ class Folder extends Model
      */
     public function children()
     {
-        return $this->hasMany(Folder::class, 'parent_id', 'id');
+        return $this->hasMany(Folder::class, 'parent_id');
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeNoParent($query)
+    {
+        return $query->where('parent_id', null);
     }
 }
