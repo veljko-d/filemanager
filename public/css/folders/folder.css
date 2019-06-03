@@ -12,16 +12,6 @@ h2 {
     padding: 0.4em;
 }
 
-#folder-create form {
-    margin: 1% 0 1% 43%;
-    display: none;
-}
-
-#folder-create p {
-    text-align: center;
-    cursor: pointer;
-}
-
 .folder {
     display: inline;
     border: 2px solid rgba(54, 69, 79, 0.1);
@@ -62,4 +52,98 @@ h2 {
 
 #f-delete i:hover {
     font-weight: bold;
+}
+
+#show {
+    text-align: center;
+    cursor: pointer;
+}
+
+#id01 p {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 2em;
+}
+
+/* Full-width input fields */
+input[type=text] {
+    width: 100%;
+    padding: 0.5em 0.6em;
+    margin: 0.4em 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 0.3em;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.5);
+    color: #333333;
+    transition: 0.5s;
+}
+
+input[type=text]:focus {
+    border: 1px solid #5bc0de;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    border-radius: 0.3em;
+    color: white;
+    padding: 0.5em 0.6em;
+    margin: 0.4em 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition-duration: 0.7s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+form button:last-child {
+    background-color: #f44336;
+}
+
+.folder-input {
+    padding: 1em;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: rgba(248,250,252);
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid rgba(248,250,252);
+    border-radius: 0.3em;
+    width: 15%; /* Could be more or less, depending on screen size */
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
 }

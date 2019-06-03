@@ -5,9 +5,12 @@ $(document).ready(function() {
     });
 });
 
-// Slide toggle create new folder form
-$(document).ready(function(){
-    $("#folder-create p").click(function(){
-        $("#folder-create form").slideToggle("1100");
-    });
-});
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}

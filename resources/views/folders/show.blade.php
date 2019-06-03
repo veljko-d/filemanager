@@ -18,14 +18,10 @@
         <hr>
         @auth
             @include ('folders.create')
-
-            <hr>
         @endauth
 
         @auth
             @include ('files.create')
-
-            <hr>
         @endauth
 
         @include ('layouts.errors')
