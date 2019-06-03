@@ -68,7 +68,12 @@ class FolderController extends Controller
     {
         $folder = Folder::findOrFail($id);
 
-        Storage::deleteDirectory($folder->name);
+        if ($folder->parent) {
+            $path = $folder->parent->name . '/' . $folder->name;
+            Storage::deleteDirectory($path);
+        } else {
+            Storage::deleteDirectory($folder->name);
+        }
 
         Folder::destroy($id);
 
