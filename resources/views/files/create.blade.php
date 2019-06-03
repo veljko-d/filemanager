@@ -1,5 +1,5 @@
 <div id="file-create">
-    <p>Upload File</p>
+    <p><i class="fa fa-upload"></i> Upload File</p>
 
     <form action="/files" method="POST" enctype="multipart/form-data">
         @csrf

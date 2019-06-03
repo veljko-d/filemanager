@@ -1,5 +1,5 @@
 <div id="folder-create">
-    <p>Create New Folder</p>
+    <p><i class="fas fa-plus-square"></i> Create New Folder</p>
 
     <form action="/folders" method="POST">
         @csrf
