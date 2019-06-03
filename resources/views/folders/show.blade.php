@@ -9,7 +9,11 @@
     <div id="folders">
         <h1>BROWSE FOLDERS</h1>
 
-        <h2><i class='fas fa-folder'></i> {{ $folder->name }}</h2>
+        <h2>
+            <i class='fas fa-folder'></i>
+            <a href="/folders">root</a> /
+            @isset($folder->parent) <a href="/folders/{{ $folder->parent->id }}">{{ $folder->parent->name }}</a> / @endisset {{ $folder->name }}
+        </h2>
 
         <hr>
         @auth
