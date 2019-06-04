@@ -40,7 +40,7 @@ class FolderController extends Controller
      */
     public function index()
     {
-        $folders = $this->folderService->all();
+        $folders = $this->folderService->index();
 
         return view('folders.index', compact('folders'));
     }
@@ -52,7 +52,7 @@ class FolderController extends Controller
      */
     public function store(CreateFolderRequest $request)
     {
-        $this->folderService->create($request->validated());
+        $this->folderService->store($request->validated());
 
         return redirect()->back();
     }
@@ -64,7 +64,7 @@ class FolderController extends Controller
      */
     public function show($id)
     {
-        $folder = $this->folderService->find($id);
+        $folder = $this->folderService->show($id);
 
         return view('folders.show', compact('folder'));
     }
@@ -86,7 +86,7 @@ class FolderController extends Controller
      */
     public function destroy($id)
     {
-        $this->folderService->delete($id);
+        $this->folderService->destroy($id);
 
         return redirect()->back();
     }

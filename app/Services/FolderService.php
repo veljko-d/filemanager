@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Folder;
+use App\Repositories\Folder\FolderRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,12 +13,33 @@ use Illuminate\Support\Facades\Storage;
  */
 class FolderService
 {
-    public function all()
+    /**
+     * @var FolderRepositoryInterface
+     */
+    private $folderRepository;
+
+    /**
+     * FolderService constructor.
+     *
+     * @param FolderRepositoryInterface $folderRepository
+     */
+    public function __construct(FolderRepositoryInterface $folderRepository)
     {
-        return Folder::with(['files'])->noParent()->paginate(50);
+        $this->folderRepository = $folderRepository;
     }
 
-    public function create(array $data)
+    /**
+     * @return mixed
+     */
+    public function index()
+    {
+        return $this->folderRepository->index();
+    }
+
+    /**
+     * @param array $data
+     */
+    public function store(array $data)
     {
         if ($data['parent_id']) {
             $path = $this->getFolderPath($data['parent_id']) . $data['folder_name'];
@@ -34,17 +55,25 @@ class FolderService
             'parent_id' => $data['parent_id'],
         ];
 
-        Folder::create($folder);
+        $this->folderRepository->store($folder);
     }
 
-    public function find($id)
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function show($id)
     {
-        return Folder::findOrFail($id);
+        return $this->folderRepository->show($id);
     }
 
-    public function delete($id)
+    /**
+     * @param $id
+     */
+    public function destroy($id)
     {
-        $folder = Folder::findOrFail($id);
+        $folder = $this->folderRepository->show($id);
 
         if ($folder->parent) {
             $path = $this->getFolderPath($folder->parent->id) . $folder->name;
@@ -54,7 +83,7 @@ class FolderService
             Storage::deleteDirectory($folder->name);
         }
 
-        Folder::destroy($id);
+        $this->folderRepository->destroy($id);
     }
 
     /**
@@ -64,13 +93,13 @@ class FolderService
      */
     protected function getFolderPath($id)
     {
-        $parent = Folder::findOrFail($id);
+        $parent = $this->folderRepository->show($id);
         $path = $parent->name . '/';
 
         if ($parent->parent) {
             return $this->getFolderPath($parent->parent->id) . $path;
-        } else {
-            return $path;
         }
+
+        return $path;
     }
 }

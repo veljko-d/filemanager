@@ -14,10 +14,6 @@
             @include ('folders.create')
         @endauth
 
-        @auth
-            @include ('files.create')
-        @endauth
-
         @include ('layouts.errors')
 
         @foreach ($folders as $folder)
