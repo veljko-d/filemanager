@@ -48,6 +48,7 @@ class FolderService
 
         if ($folder->parent) {
             $path = $folder->parent->name . '/' . $folder->name;
+
             Storage::deleteDirectory($path);
         } else {
             Storage::deleteDirectory($folder->name);
@@ -56,14 +57,20 @@ class FolderService
         Folder::destroy($id);
     }
 
+    /**
+     * @param $id
+     *
+     * @return string
+     */
     protected function getFolderPath($id)
     {
         $parent = Folder::findOrFail($id);
+        $path = $parent->name . '/';
 
         if ($parent->parent) {
-            return true;
+            return $this->getFolderPath($parent->parent->id) . $path;
         } else {
-            return $path = $parent->name . '/';
+            return $path;
         }
     }
 }
