@@ -11,15 +11,13 @@
 
         <hr>
         @auth
-            @include ('folders.create')
+            @include('folders.create')
         @endauth
 
-        @include ('layouts.errors')
+        @include('layouts.errors')
 
         @foreach ($folders as $folder)
-
-            @include ('folders.folder')
-
+            @include('folders.folder')
         @endforeach
     </div>
 @endsection
