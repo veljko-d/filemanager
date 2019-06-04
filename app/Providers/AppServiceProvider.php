@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Folder\FolderRepository;
+use App\Repositories\Folder\FolderRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            FolderRepositoryInterface::class,
+            FolderRepository::class
+        );
     }
 
     /**
