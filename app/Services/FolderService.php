@@ -68,6 +68,14 @@ class FolderService
         return $this->folderRepository->show($id);
     }
 
+    public function update(array $data, $id)
+    {
+        //$folder = $this->folderRepository->show($id);
+        //$oldName = $folder->name;
+
+        //rename ($oldName, $data['name']);
+    }
+
     /**
      * @param $id
      */

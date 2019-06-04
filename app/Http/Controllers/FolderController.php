@@ -69,14 +69,17 @@ class FolderController extends Controller
         return view('folders.show', compact('folder'));
     }
 
-    public function edit($id)
-    {
-        //
-    }
-
+    /**
+     * @param UpdateFolderRequest $request
+     * @param                     $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateFolderRequest $request, $id)
     {
-        //
+        $this->folderService->update($request->validated(), $id);
+
+        return redirect()->back();
     }
 
     /**

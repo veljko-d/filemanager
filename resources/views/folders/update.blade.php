@@ -14,7 +14,6 @@
 
         <div class="folder-input">
             <input type="text" name="folder_name" placeholder="Folder Name" required>
-            <input type="hidden" name="parent_id" size="2" @isset($folder) value="{{ $folder->id }}" @endisset readonly>
 
             <button type="submit">Rename Folder</button>
             <button type="button" onclick="document.getElementById('id02').style.display='none'">Cancel</button>
