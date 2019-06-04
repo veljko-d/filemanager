@@ -7,3 +7,13 @@
     text-align: center;
     cursor: pointer;
 }
+
+#show {
+    text-align: center;
+    cursor: pointer;
+    color: rgba(66, 139, 202, 1);
+}
+
+#show:hover {
+    text-decoration: underline;
+}

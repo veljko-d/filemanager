@@ -12,8 +12,8 @@
             <input type="text" name="folder_name" placeholder="Folder Name" required>
             <input type="hidden" name="parent_id" size="2" @isset($folder) value="{{ $folder->id }}" @endisset readonly>
 
-            <button type="submit">Create Folder</button>
-            <button type="button" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+            <button id="submit-green" type="submit">Create Folder</button>
+            <button id="submit-red" type="button" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
         </div>
     </form>
 </div>
