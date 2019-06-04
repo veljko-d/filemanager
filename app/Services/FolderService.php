@@ -41,13 +41,13 @@ class FolderService
      */
     public function store(array $data)
     {
-        if ($data['parent_id']) {
-            $path = $this->getFolderPath($data['parent_id']) . $data['folder_name'];
+        $path = $data['folder_name'];
 
-            Storage::makeDirectory($path);
-        } else {
-            Storage::makeDirectory($data['folder_name']);
+        if ($data['parent_id']) {
+            $path = $this->getFolderPath($data['parent_id']) . $path;
         }
+
+        Storage::makeDirectory($path);
 
         $folder = [
             'name'      => $data['folder_name'],
@@ -74,14 +74,13 @@ class FolderService
     public function destroy($id)
     {
         $folder = $this->folderRepository->show($id);
+        $path = $folder->name;
 
         if ($folder->parent) {
-            $path = $this->getFolderPath($folder->parent->id) . $folder->name;
-
-            Storage::deleteDirectory($path);
-        } else {
-            Storage::deleteDirectory($folder->name);
+            $path = $this->getFolderPath($folder->parent->id) . $path;
         }
+
+        Storage::deleteDirectory($path);
 
         $this->folderRepository->destroy($id);
     }
