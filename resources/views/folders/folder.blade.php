@@ -4,13 +4,17 @@
     </div>
 
     @can('delete', $folder)
-    <form method="POST" action="/folders/{{ $folder->id }}">
-        @method('DELETE')
-        @csrf
+        <form method="POST" action="/folders/{{ $folder->id }}">
+            @method('DELETE')
+            @csrf
 
-        <button type="submit" id="f-delete" title="Delete folder">
-            <i class='far fa-trash-alt'></i>
-        </button>
-    </form>
+            <button type="submit" id="f-del-upd" title="Delete folder">
+                <i class='far fa-trash-alt'></i>
+            </button>
+        </form>
+    @endcan
+
+    @can('update', $folder)
+        @include('folders.update')
     @endcan
 </div>
