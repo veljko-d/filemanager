@@ -1,4 +1,4 @@
-<p id="show" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+<p id="show" onclick="document.getElementById('id01').style.display='block'">
     <i class="fas fa-folder-plus"></i> New Folder
 </p>
 

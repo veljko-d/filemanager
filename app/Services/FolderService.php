@@ -47,7 +47,7 @@ class FolderService
         $folder = Folder::findOrFail($id);
 
         if ($folder->parent) {
-            $path = $folder->parent->name . '/' . $folder->name;
+            $path = $this->getFolderPath($folder->parent->id) . $folder->name;
 
             Storage::deleteDirectory($path);
         } else {
