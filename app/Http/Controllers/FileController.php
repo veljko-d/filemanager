@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\File\CreateFileRequest;
-use App\Models\File;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use App\Services\FileService;
 
 /**
  * Class FileController
@@ -14,36 +12,52 @@ use Illuminate\Support\Facades\Storage;
  */
 class FileController extends Controller
 {
+    /**
+     * @var FileService
+     */
+    private $fileService;
+
+    /**
+     * FileController constructor.
+     *
+     * @param FileService $fileService
+     */
+    public function __construct(FileService $fileService)
+    {
+        $this->fileService = $fileService;
+
+        $this->middleware('auth')->only([
+            'store',
+            'destroy'
+        ]);
+    }
+
+    /**
+     * @param CreateFileRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateFileRequest $request)
     {
-        $validation = $request->validated();
+        $this->fileService->store($request->validated());
 
-        $path = Storage::putFile('Prvi', $validation['file_to_upload']);
-
-        /*$data = [
-            'name'    => $getFile->getClientOriginalName(),
-            'ext'     => $getFile->getClientOriginalExtension(),
-            'size'    => $getFile->getSize(),
-            'user_id' => Auth::id()
-        ];*/
-
-        return redirect()->home();
+        return redirect()->back();
     }
 
     public function show($id)
     {
-        // ...
-
-        return Storage::download('file.jpg');
+        //
     }
 
-
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
-        $file = File::findOrFail($id);
+        $this->fileService->destroy($id);
 
-        Storage::delete($file->name);
-
-        File::destroy($id);
+        return redirect()->back();
     }
 }
