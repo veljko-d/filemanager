@@ -26,8 +26,8 @@
 
         @include('layouts.errors')
 
-        @foreach ($folder->children as $folder)
-            @include('folders.folder')
+        @foreach ($folder->children as $child)
+            @include('folders.child')
         @endforeach
 
         @foreach ($folder->files as $file)
