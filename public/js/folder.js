@@ -1,6 +1,6 @@
 // Confirm folder delete
 $(document).ready(function() {
-    $("#f-delete").click(function() {
+    $("#f-dl").click(function() {
         return confirm('Are you sure you want to delete this folder?');
     });
 });

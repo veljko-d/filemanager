@@ -11,8 +11,8 @@
 
         <h2>
             <i class='fas fa-folder'></i>
-            <a href="/folders">root</a> /
-            @isset($folder->parent) <a href="/folders/{{ $folder->parent->id }}">{{ $folder->parent->name }}</a> / @endisset {{ $folder->name }}
+            <a href="/folders">root</a> /...
+            @isset($folder->parent) <a href="/folders/{{ $folder->parent->id }}">{{ $folder->parent->name }}</a> / @endisset <span>{{ $folder->name }}</span>
         </h2>
 
         <hr>

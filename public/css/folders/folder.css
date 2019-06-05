@@ -18,6 +18,10 @@ h2 {
     padding: 0.1em 0.4em;
 }
 
+h2 span {
+    color: #005b96;
+}
+
 .folder {
     display: inline;
     border: 2px solid rgba(54, 69, 79, 0.1);
