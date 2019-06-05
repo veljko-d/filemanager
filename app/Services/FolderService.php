@@ -70,6 +70,7 @@ class FolderService
 
     public function update(array $data, $id)
     {
+        dd($data, $id);
         //$folder = $this->folderRepository->show($id);
         //$oldName = $folder->name;
 
@@ -98,7 +99,7 @@ class FolderService
      *
      * @return string
      */
-    protected function getFolderPath($id)
+    public function getFolderPath($id)
     {
         $parent = $this->folderRepository->show($id);
         $path = $parent->name . '/';

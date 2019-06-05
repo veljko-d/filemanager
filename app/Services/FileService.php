@@ -25,17 +25,25 @@ class FileService
     private $folderRepository;
 
     /**
+     * @var FolderService
+     */
+    private $folderService;
+
+    /**
      * FileService constructor.
      *
      * @param FileRepositoryInterface   $fileRepository
      * @param FolderRepositoryInterface $folderRepository
+     * @param FolderService             $folderService
      */
     public function __construct(
         FileRepositoryInterface $fileRepository,
-        FolderRepositoryInterface $folderRepository
+        FolderRepositoryInterface $folderRepository,
+        FolderService $folderService
     ) {
         $this->fileRepository = $fileRepository;
         $this->folderRepository = $folderRepository;
+        $this->folderService = $folderService;
     }
 
     /**
@@ -47,8 +55,7 @@ class FileService
         $path = $folder->name;
 
         if ($folder->parent) {
-
-            dd('hi');
+            $path = $this->folderService->getFolderPath($folder->parent->id) . $path;
         }
 
         $path = Storage::putFile($path, $data['file_to_upload']);

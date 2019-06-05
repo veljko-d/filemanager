@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class UpdateFolderRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
+     * @return int|null
      */
     public function authorize()
     {
@@ -23,16 +21,12 @@ class UpdateFolderRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
      * @return array
      */
     public function rules()
     {
         return [
-            'id'          => 'required|exists:folders,id',
             'folder_name' => 'required|min:1|max:50',
-            'parent_id'   => 'nullable|exists:folders,id',
         ];
     }
 }
