@@ -39,7 +39,7 @@
     text-decoration: underline;
 }
 
-#f-dwn {
+#file-dwn, #file-dl {
     display: inline;
     float: right;
     margin: 0.2em -0.3em 0 0.5em;
@@ -51,10 +51,14 @@
     width: 1em;
 }
 
-#f-dwn i {
+#file-dwn i, #file-dl i {
     transition-duration: 0.4s;
 }
 
-#f-dwn i:hover {
+#file-dwn i:hover, #file-dl i:hover {
     font-weight: bold;
+}
+
+#file-dl {
+    margin: 0.2em 0.2em 0 0.3em;
 }

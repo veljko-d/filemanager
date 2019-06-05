@@ -96,8 +96,15 @@ class FileService
     public function destroy($id)
     {
         $file = $this->fileRepository->show($id);
+        $folder = $this->folderRepository->show($file->folder_id);
 
-        Storage::delete($file->name);
+        $path = $folder->name . '/' . $file->name . '.' . $file->ext;
+
+        if ($folder->parent) {
+            $path = $this->folderService->getFolderPath($folder->parent->id) . $path;
+        }
+
+        Storage::delete($path);
 
         $this->fileRepository->destroy($id);
     }

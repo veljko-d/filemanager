@@ -1,4 +1,4 @@
-<button class="f-dl-up" title="Rename folder" onclick="document.getElementById('id02').style.display='block'">
+<button class="folder-dl-up" title="Rename Folder" onclick="document.getElementById('id02').style.display='block'">
     <i class='far fa-edit'></i>
 </button>
 

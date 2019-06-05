@@ -43,7 +43,7 @@ h2 span {
     font-weight: bold;
 }
 
-.f-dl-up {
+.folder-dl-up {
     display: inline;
     float: right;
     margin: 3.2em 0.2em 0 0.5em;
@@ -55,12 +55,12 @@ h2 span {
     width: 1em;
 }
 
-.f-dl-up i {
+.folder-dl-up i {
     color: rgba(66, 139, 202, 1);
     transition-duration: 0.4s;
 }
 
-.f-dl-up i:hover {
+.folder-dl-up i:hover {
     font-weight: bold;
 }
 

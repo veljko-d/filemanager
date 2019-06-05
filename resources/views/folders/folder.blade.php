@@ -8,7 +8,7 @@
             @method('DELETE')
             @csrf
 
-            <button type="submit" id="f-dl" class="f-dl-up" title="Delete folder">
+            <button type="submit" id="folder-dl" class="folder-dl-up" title="Delete Folder">
                 <i class='far fa-trash-alt'></i>
             </button>
         </form>
