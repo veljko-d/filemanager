@@ -29,6 +29,10 @@
         @foreach ($folder->children as $folder)
             @include('folders.folder')
         @endforeach
+
+        @foreach ($folder->files as $file)
+            @include('files.file')
+        @endforeach
     </div>
 @endsection
 

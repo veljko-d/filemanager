@@ -42,7 +42,7 @@
 #f-dwn {
     display: inline;
     float: right;
-    margin: 0.2em 0.2em 0 0.5em;
+    margin: 0.2em -0.3em 0 0.5em;
     color: #111;
     background: rgba(192,197,206, 0);
     border: none;

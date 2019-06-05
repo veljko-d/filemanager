@@ -44,9 +44,14 @@ class FileController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function show($id)
     {
-        //
+        return $this->fileService->download($id);
     }
 
     /**

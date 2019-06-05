@@ -71,9 +71,23 @@ class FileService
         $this->fileRepository->create($file);
     }
 
-    public function download()
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function download($id)
     {
-        return Storage::download('file.jpg');
+        $file = $this->fileRepository->show($id);
+        $folder = $this->folderRepository->show($file->folder_id);
+
+        $path = $folder->name . '/' . $file->name . '.' . $file->ext;
+
+        if ($folder->parent) {
+            $path = $this->folderService->getFolderPath($folder->parent->id) . $path;
+        }
+
+        return Storage::download($path);
     }
 
     /**
