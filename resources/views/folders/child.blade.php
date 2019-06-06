@@ -15,6 +15,6 @@
     @endcan
 
     @can('update', $child)
-        @include('folders.update')
+        @include('folders.update-children')
     @endcan
 </div>
