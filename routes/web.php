@@ -13,7 +13,7 @@
 
 Route::redirect('/', '/folders')->name('home');;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::resource('files', 'FileController')->only([
     'store', 'show', 'destroy'
