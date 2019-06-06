@@ -27,9 +27,7 @@ class FolderController extends Controller
     {
         $this->folderService = $folderService;
 
-        $this->middleware('auth')->only(['store', 'update', 'destroy']);
-
-        $this->middleware('verified')->only(['store', 'update', 'destroy']);
+        $this->middleware(['auth', 'verified'])->only(['store', 'update', 'destroy']);
     }
 
     /**

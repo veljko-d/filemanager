@@ -26,9 +26,7 @@ class FileController extends Controller
     {
         $this->fileService = $fileService;
 
-        $this->middleware('auth')->only(['store', 'destroy']);
-
-        $this->middleware('verified')->only(['store', 'destroy']);
+        $this->middleware(['auth', 'verified'])->only(['store', 'destroy']);
     }
 
     /**
