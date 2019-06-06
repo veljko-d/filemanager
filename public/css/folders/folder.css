@@ -83,7 +83,7 @@ hr {
 /* Full-width input fields */
 input[type=text] {
     width: 100%;
-    padding: 0.5em 0.6em;
+    padding: 0.4em 0.5em;
     margin: 0.4em 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -100,14 +100,15 @@ input[type=text]:focus {
 
 /* Set a style for all buttons */
 #submit-green, #submit-red {
+    display: inline;
     background-color: #4CAF50;
     border-radius: 0.3em;
     color: white;
-    padding: 0.5em 0.6em;
-    margin: 0.4em 0;
+    padding: 0.3em 0.4em;
+    margin: 0.8em 0 0.4em 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 49%;
     transition-duration: 0.7s;
 }
 
@@ -150,7 +151,7 @@ input[type=text]:focus {
 .modal p {
     text-align: center;
     font-weight: bold;
-    padding-top: 2em;
+    padding: 2em 0 0 0;
 }
 
 /* Add Zoom Animation */
