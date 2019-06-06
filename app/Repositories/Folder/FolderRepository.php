@@ -49,7 +49,7 @@ class FolderRepository implements FolderRepositoryInterface
      */
     public function update(array $data, $id)
     {
-        //Folder::where('id', $id)->update($data);
+        Folder::where('id', $id)->update($data);
     }
 
     /**

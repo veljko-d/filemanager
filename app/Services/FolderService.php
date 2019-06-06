@@ -71,13 +71,25 @@ class FolderService
         return $this->folderRepository->show($id);
     }
 
+    /**
+     * @param array $data
+     * @param       $id
+     */
     public function update(array $data, $id)
     {
-        dd($data, $id);
-        //$folder = $this->folderRepository->show($id);
-        //$oldName = $folder->name;
+        $folder = $this->folderRepository->show($id);
 
-        //rename ($oldName, $data['name']);
+        $path = null;
+
+        if ($folder->parent) {
+            $path = $this->getFolderPath($folder->parent->id);
+        }
+
+        Storage::move($path . $folder->name, $path . $data['folder_name']);
+
+        $folder = ['name' => $data['folder_name']];
+
+        $this->folderRepository->update($folder, $id);
     }
 
     /**
