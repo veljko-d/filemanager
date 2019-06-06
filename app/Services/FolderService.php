@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\Folder\FolderRepositoryInterface;
+use App\Services\Traits\FolderPathTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
  */
 class FolderService
 {
+    use FolderPathTrait;
+
     /**
      * @var FolderRepositoryInterface
      */
@@ -92,22 +95,5 @@ class FolderService
         Storage::deleteDirectory($path);
 
         $this->folderRepository->destroy($id);
-    }
-
-    /**
-     * @param $id
-     *
-     * @return string
-     */
-    public function getFolderPath($id)
-    {
-        $parent = $this->folderRepository->show($id);
-        $path = $parent->name . '/';
-
-        if ($parent->parent) {
-            return $this->getFolderPath($parent->parent->id) . $path;
-        }
-
-        return $path;
     }
 }

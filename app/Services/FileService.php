@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\File\FileRepositoryInterface;
 use App\Repositories\Folder\FolderRepositoryInterface;
+use App\Services\Traits\FolderPathTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
  */
 class FileService
 {
+    use FolderPathTrait;
+
     /**
      * @var FileRepositoryInterface
      */
@@ -25,25 +28,17 @@ class FileService
     private $folderRepository;
 
     /**
-     * @var FolderService
-     */
-    private $folderService;
-
-    /**
      * FileService constructor.
      *
      * @param FileRepositoryInterface   $fileRepository
      * @param FolderRepositoryInterface $folderRepository
-     * @param FolderService             $folderService
      */
     public function __construct(
         FileRepositoryInterface $fileRepository,
-        FolderRepositoryInterface $folderRepository,
-        FolderService $folderService
+        FolderRepositoryInterface $folderRepository
     ) {
         $this->fileRepository = $fileRepository;
         $this->folderRepository = $folderRepository;
-        $this->folderService = $folderService;
     }
 
     /**
@@ -55,7 +50,7 @@ class FileService
         $path = $folder->name;
 
         if ($folder->parent) {
-            $path = $this->folderService->getFolderPath($folder->parent->id) . $path;
+            $path = $this->getFolderPath($folder->parent->id) . $path;
         }
 
         $path = Storage::putFile($path, $data['file_to_upload']);
@@ -84,7 +79,7 @@ class FileService
         $path = $folder->name . '/' . $file->name . '.' . $file->ext;
 
         if ($folder->parent) {
-            $path = $this->folderService->getFolderPath($folder->parent->id) . $path;
+            $path = $this->getFolderPath($folder->parent->id) . $path;
         }
 
         return Storage::download($path);
@@ -101,7 +96,7 @@ class FileService
         $path = $folder->name . '/' . $file->name . '.' . $file->ext;
 
         if ($folder->parent) {
-            $path = $this->folderService->getFolderPath($folder->parent->id) . $path;
+            $path = $this->getFolderPath($folder->parent->id) . $path;
         }
 
         Storage::delete($path);
