@@ -4,6 +4,7 @@ h1 {
     border: 2px dotted rgba(66, 139, 202, 0.2);
     border-radius: 0.3em;
     color: rgba(66, 139, 202, 0.8);
+    background: rgba(66, 139, 202, 0.1);
     text-align: center;
     transition: 0.7s;
 }
@@ -22,10 +23,15 @@ h2 span {
     color: #005b96;
 }
 
+hr {
+    border: 1px solid rgba(54, 69, 79, 0.1);
+}
+
 .folder {
     display: inline;
     border: 2px solid rgba(54, 69, 79, 0.1);
     border-radius: 5%;
+    background: rgba(66, 139, 202, 0.1);
     float: left;
     width: 10em;
     height: 10em;
@@ -35,7 +41,7 @@ h2 span {
 }
 
 .folder:hover {
-    background: rgba(192,197,206, 0.4);
+    background: rgba(66, 139, 202, 0.2);
 }
 
 #f-name {

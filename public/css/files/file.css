@@ -2,6 +2,7 @@
     display: inline;
     border: 2px solid rgba(54, 69, 79, 0.1);
     border-radius: 5%;
+    background: rgba(192,197,206, 0.2);
     float: left;
     width: 10em;
     height: 10em;
