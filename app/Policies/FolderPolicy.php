@@ -16,14 +16,6 @@ class FolderPolicy
     use HandlesAuthorization;
 
     /**
-     * @param User $user
-     */
-    public function create(User $user)
-    {
-
-    }
-
-    /**
      * @param User   $user
      * @param Folder $folder
      *

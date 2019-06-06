@@ -20,5 +20,5 @@ Route::resource('files', 'FileController')->only([
 ]);
 
 Route::resource('folders', 'FolderController')->except([
-    'create'
+    'create', 'edit'
 ]);

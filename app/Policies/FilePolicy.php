@@ -17,14 +17,6 @@ class FilePolicy
 
     /**
      * @param User $user
-     */
-    public function create(User $user)
-    {
-
-    }
-
-    /**
-     * @param User $user
      * @param File $file
      *
      * @return bool
