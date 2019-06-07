@@ -49,7 +49,7 @@ class FolderController extends Controller
     {
         $this->folderService->store($request->validated());
 
-        return redirect()->back();
+        return back()->with('status', 'Folder created successfully!');
     }
 
     /**
@@ -74,7 +74,7 @@ class FolderController extends Controller
     {
         $this->folderService->update($request->validated(), $id);
 
-        return redirect()->back();
+        return back()->with('status', 'Folder renamed successfully!');
     }
 
     /**
@@ -86,6 +86,6 @@ class FolderController extends Controller
     {
         $this->folderService->destroy($id);
 
-        return redirect()->back();
+        return back()->with('status', 'Folder deleted successfully!');
     }
 }

@@ -38,7 +38,7 @@ class FileController extends Controller
     {
         $this->fileService->store($request->validated());
 
-        return redirect()->back();
+        return back()->with('status', 'File uploaded successfully!');
     }
 
     /**
@@ -60,6 +60,6 @@ class FileController extends Controller
     {
         $this->fileService->destroy($id);
 
-        return redirect()->back();
+        return back()->with('status', 'File deleted successfully!');
     }
 }
