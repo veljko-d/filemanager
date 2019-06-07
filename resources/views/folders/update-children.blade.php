@@ -1,5 +1,5 @@
 <button class="folder-dl-up" title="Rename Folder" onclick="document.getElementById({{ $child->id }}).style.display='block'">
-    <i class='far fa-edit'></i>
+    <i class="far fa-edit"></i>
 </button>
 
 <div id="{{ $child->id }}" class="modal">
