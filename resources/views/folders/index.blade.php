@@ -6,12 +6,15 @@
 @endsection
 
 @section('content')
+    @include('layouts.message')
+
     <div id="folders">
         <h1>BROWSE FOLDERS</h1>
 
         <h2><i class="fas fa-folder"></i> <span>root</span> /</h2>
 
         <hr>
+
         @auth
             @include('folders.create')
         @endauth
