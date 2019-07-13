@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/folders')->name('home');;
+
+Auth::routes(['verify' => true]);
+
+Route::resource('files', 'FileController')->only([
+    'store', 'show', 'destroy'
+]);
+
+Route::resource('folders', 'FolderController')->except([
+    'create', 'edit'
+]);
