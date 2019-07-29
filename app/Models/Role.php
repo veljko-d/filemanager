@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Role extends Model
 {
+    const ROLE_ADMIN = 'role_admin';
+    const ROLE_MODERATOR = 'role_moderator';
+    const ROLE_CUSTOMER = 'role_customer';
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
